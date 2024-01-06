@@ -33,10 +33,11 @@ SRC='src'
 ##### Real-world data distribution: CIFAR10 dataset #####
 
 #### Generate samples from Gaussian KDE ####
-for seed in {0..1}
+for seed in 1
 do
   python "${SRC}"/main.py \
       --experiment_name "KDE_generation_cifar10" \
+      --is_explicit_sample \
       --seed "$seed"
 done
 

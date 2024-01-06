@@ -23,6 +23,7 @@ if __name__ == '__main__':
     parser.add_argument('--num_training_data', type=int, default=10)
     parser.add_argument('--num_generated_samples', type=int, default=20)
     parser.add_argument('--is_early_stop', default=False, action='store_true')
+    parser.add_argument('--is_explicit_sample', default=False, action='store_true')
 
     args = parser.parse_args()
 
@@ -34,7 +35,11 @@ if __name__ == '__main__':
 
     if args.experiment_name == 'KDE_generation_cifar10':
         model = KernelDensityEstimator(dataset_name='CIFAR10', args=args, train_init=train_init)
-        original_sample, generate_sample = model.random_sample(scaling_factor=0.1)
+        if model.args.is_explicit_sample:
+            sample = model.read_image('./results/KDE_generation_cifar10/kde_sampling_original_cifar10_0.png')
+            original_sample, generate_sample = model.explicit_sample(scaling_factor=0.1, data=sample)
+        else:
+            original_sample, generate_sample = model.random_sample(scaling_factor=0.1)
         model.visualization(sample=original_sample, tag='original')
         model.visualization(sample=generate_sample, tag='KDE_generate')
 
