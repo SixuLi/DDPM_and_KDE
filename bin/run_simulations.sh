@@ -33,22 +33,22 @@ SRC='src'
 ##### Real-world data distribution: CIFAR10 dataset #####
 
 #### Generate samples from Gaussian KDE ####
-#for seed in 1
-#do
-#  python "${SRC}"/main.py \
-#      --experiment_name "KDE_generation_cifar10" \
-#      --is_explicit_sample \
-#      --seed "$seed"
-#done
+for seed in 1
+do
+  python "${SRC}"/main.py \
+      --experiment_name "KDE_generation_cifar10" \
+      --is_explicit_sample \
+      --seed "$seed"
+done
 
 
 #### Generate samples from DDPM with empirical optimal score function ####
-python "${SRC}"/DiffMemorize/generate_optim.py \
-    --outdir=results/fid-tmp-optim-early-stop-3 \
-    --early_stop=3 \
-    --seeds=20-30 \
-    --subdirs \
-    --network=datasets/cifar10/cifar10-train.zip
+#python "${SRC}"/DiffMemorize/generate_optim.py \
+#    --outdir=results/fid-tmp-optim-early-stop-3 \
+#    --early_stop=3 \
+#    --seeds=20-30 \
+#    --subdirs \
+#    --network=datasets/cifar10/cifar10-train.zip
 
 
 

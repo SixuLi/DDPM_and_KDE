@@ -36,12 +36,16 @@ if __name__ == '__main__':
     if args.experiment_name == 'KDE_generation_cifar10':
         model = KernelDensityEstimator(dataset_name='CIFAR10', args=args, train_init=train_init)
         if model.args.is_explicit_sample:
-            sample = model.read_image('./results/KDE_generation_cifar10/000000.png')
-            original_sample, generate_sample = model.explicit_sample(scaling_factor=0.1, data=sample[0])
+            for i in range(8):
+                model.args.seed = i
+                sample = model.read_image('./results/fid-tmp-optim-early-stop-0/000000/00002{}.png'.format(i))
+                original_sample, generate_sample = model.explicit_sample(scaling_factor=0.1, data=sample[0])
+                model.visualization(sample=original_sample, tag='original')
+                model.visualization(sample=generate_sample, tag='KDE_generate')
         else:
             original_sample, generate_sample = model.random_sample(scaling_factor=0.1)
-        model.visualization(sample=original_sample, tag='original')
-        model.visualization(sample=generate_sample, tag='KDE_generate')
+            model.visualization(sample=original_sample, tag='original')
+            model.visualization(sample=generate_sample, tag='KDE_generate')
 
     else:
         model = Generative_model(args=args, train_init=train_init)
