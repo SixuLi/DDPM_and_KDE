@@ -232,7 +232,7 @@ def parse_int_list(s):
               default=64, show_default=True)
 @click.option('--steps', 'num_steps', help='Number of sampling steps', metavar='INT', type=click.IntRange(min=1),
               default=18, show_default=True)
-@click.option('--early_stop', 'early_stop_time', help='Number of early stopping steps', metavar='INT', type=click.IntRange(min=1),
+@click.option('--early_stop', 'early_stop_time', help='Number of early stopping steps', metavar='INT', type=click.IntRange(min=0),
               default=0, show_default=True)
 @click.option('--sigma_min', help='Lowest noise level  [default: varies]', metavar='FLOAT',
               type=click.FloatRange(min=0, min_open=True))
