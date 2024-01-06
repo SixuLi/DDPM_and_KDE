@@ -18,7 +18,7 @@ from torch_utils import distributed as dist
 # Proposed EDM sampler (Algorithm 2).
 
 def edm_sampler(
-        net, latents, class_labels=None, randn_like=torch.randn_like,
+        net, latents, class_labels=None, randn_like=torch.randn_like, early_stop_time=0,
         num_steps=18, sigma_min=0.002, sigma_max=80, rho=7,
         S_churn=0, S_min=0, S_max=float('inf'), S_noise=1,
 ):
@@ -35,6 +35,8 @@ def edm_sampler(
     # Main sampling loop.
     x_next = latents.to(torch.float64) * t_steps[0]
     for i, (t_cur, t_next) in enumerate(zip(t_steps[:-1], t_steps[1:])):  # 0, ..., N-1
+        if i >= num_steps - early_stop_time:
+            break
         x_cur = x_next
 
         # Increase noise temporarily.
@@ -230,6 +232,8 @@ def parse_int_list(s):
               default=64, show_default=True)
 @click.option('--steps', 'num_steps', help='Number of sampling steps', metavar='INT', type=click.IntRange(min=1),
               default=18, show_default=True)
+@click.option('--early_stop', 'early_stop_time', help='Number of early stopping steps', metavar='INT', type=click.IntRange(min=1),
+              default=0, show_default=True)
 @click.option('--sigma_min', help='Lowest noise level  [default: varies]', metavar='FLOAT',
               type=click.FloatRange(min=0, min_open=True))
 @click.option('--sigma_max', help='Highest noise level  [default: varies]', metavar='FLOAT',

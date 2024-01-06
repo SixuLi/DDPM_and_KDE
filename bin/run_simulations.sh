@@ -44,7 +44,8 @@ SRC='src'
 
 #### Generate samples from DDPM with empirical optimal score function ####
 python "${SRC}"/DiffMemorize/generate_optim.py \
-    --outdir=results/fid-tmp-optim \
+    --outdir=results/fid-tmp-optim-early-stop-2 \
+    --early_stop=2 \
     --seeds=0-10 \
     --subdirs \
     --network=datasets/cifar10/cifar10-train.zip
