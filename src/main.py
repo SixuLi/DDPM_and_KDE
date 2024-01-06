@@ -37,7 +37,7 @@ if __name__ == '__main__':
         model = KernelDensityEstimator(dataset_name='CIFAR10', args=args, train_init=train_init)
         if model.args.is_explicit_sample:
             sample = model.read_image('./results/KDE_generation_cifar10/000000.png')
-            original_sample, generate_sample = model.explicit_sample(scaling_factor=0.1, data=sample)
+            original_sample, generate_sample = model.explicit_sample(scaling_factor=0.1, data=sample[0])
         else:
             original_sample, generate_sample = model.random_sample(scaling_factor=0.1)
         model.visualization(sample=original_sample, tag='original')
