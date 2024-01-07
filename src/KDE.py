@@ -19,21 +19,19 @@ class KernelDensityEstimator:
             # Download the dataset
             dataset = datasets.CIFAR10(root='./results', train=True, download=True)
             data = dataset.data
-            print('Data shape:',data.shape)
 
             # Flatten
             data = data.reshape(data.shape[0], -1)
-            print('Images shape:', data.shape[1])
 
             # PCA transformation
-            self.pca_obj = PCA(n_components=data.shape[1])
-            self.pca_obj.fit(data)
-            data = self.pca_obj.transform(data)
-
-            # Scale transformation
-            self.scaler_obj = MinMaxScaler()
-            self.scaler_obj.fit(data)
-            data = self.scaler_obj.transform(data)
+            # self.pca_obj = PCA(n_components=data.shape[1])
+            # self.pca_obj.fit(data)
+            # data = self.pca_obj.transform(data)
+            #
+            # # Scale transformation
+            # self.scaler_obj = MinMaxScaler()
+            # self.scaler_obj.fit(data)
+            # data = self.scaler_obj.transform(data)
 
             self.train_data = data
 
@@ -41,7 +39,8 @@ class KernelDensityEstimator:
 
     def inverse_transform(self, x):
         # return self.scaler_obj.inverse_transform(np.expand_dims(x,0))[0].reshape(32,32,3)
-        return self.pca_obj.inverse_transform(self.scaler_obj.inverse_transform(np.expand_dims(x, 0)))[0].reshape(32, 32, 3)
+        # return self.pca_obj.inverse_transform(self.scaler_obj.inverse_transform(np.expand_dims(x, 0)))[0].reshape(32, 32, 3)
+        return x.reshape(32,32,3)
 
     def est_bandwidth(self):
         # Estimate bandwidth using scott's rule
@@ -89,22 +88,22 @@ class KernelDensityEstimator:
 
     def visualization(self, sample, tag):
         sample = self.inverse_transform(sample)
+        sample = (sample * 127.5 + 128).clip(0,255).astype('uint8')
         if tag == 'original':
             figsave_path = os.path.join(self.train_init.output_path, 'kde_sampling_original_cifar10_' + '{}.png'.format(self.args.seed))
         elif tag == 'KDE_generate':
             figsave_path = os.path.join(self.train_init.output_path, 'kde_sampling_sample_cifar10_' + '{}.png'.format(self.args.seed))
-        plt.figure(figsize=(6,6))
-        plt.axis('off')
-        plt.imshow(sample/255.0)
-        plt.savefig(figsave_path, bbox_inches='tight')
-        plt.show()
+        Image.fromarray(sample, 'RGB').save(figsave_path)
+        # plt.figure(figsize=(6,6))
+        # plt.axis('off')
+        # plt.imshow(sample/255.0)
+        # plt.savefig(figsave_path, bbox_inches='tight')
+        # plt.show()
 
     def read_image(self, image_name):
         data = np.array(Image.open(image_name))
-        print('Data original shape', data.shape)
         data = np.expand_dims(data, 0)
         data = data.reshape(data.shape[0], -1)
-        print('Data shape after transform', data.shape)
         data = self.pca_obj.transform(data)
         data = self.scaler_obj.transform(data)
 
