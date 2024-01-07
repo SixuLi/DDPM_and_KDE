@@ -37,6 +37,7 @@ for seed in 1
 do
   python "${SRC}"/main.py \
       --experiment_name "KDE_generation_cifar10" \
+      --is_explicit_sample \
       --seed "$seed"
 done
 

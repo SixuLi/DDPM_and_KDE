@@ -94,11 +94,6 @@ class KernelDensityEstimator:
         elif tag == 'KDE_generate':
             figsave_path = os.path.join(self.train_init.output_path, 'kde_sampling_sample_cifar10_' + '{}.png'.format(self.args.seed))
         Image.fromarray(sample, 'RGB').save(figsave_path)
-        # plt.figure(figsize=(6,6))
-        # plt.axis('off')
-        # plt.imshow(sample/255.0)
-        # plt.savefig(figsave_path, bbox_inches='tight')
-        # plt.show()
 
     def read_image(self, image_name):
         data = np.array(Image.open(image_name))
