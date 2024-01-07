@@ -24,14 +24,14 @@ class KernelDensityEstimator:
             data = data.reshape(data.shape[0], -1)
 
             # PCA transformation
-            # self.pca_obj = PCA(n_components=data.shape[1])
-            # self.pca_obj.fit(data)
-            # data = self.pca_obj.transform(data)
-            #
-            # # Scale transformation
-            # self.scaler_obj = MinMaxScaler()
-            # self.scaler_obj.fit(data)
-            # data = self.scaler_obj.transform(data)
+            self.pca_obj = PCA(n_components=data.shape[1])
+            self.pca_obj.fit(data)
+            data = self.pca_obj.transform(data)
+
+            # Scale transformation
+            self.scaler_obj = MinMaxScaler()
+            self.scaler_obj.fit(data)
+            data = self.scaler_obj.transform(data)
 
             self.train_data = data
 
