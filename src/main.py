@@ -39,7 +39,7 @@ if __name__ == '__main__':
             for i in range(8):
                 model.args.seed = i
                 sample = model.read_image('./results/fid-tmp-optim-early-stop-0/000000/00002{}.png'.format(i))
-                original_sample, generate_sample = model.explicit_sample(scaling_factor=0.1, data=sample[0])
+                original_sample, generate_sample = model.explicit_sample(scaling_factor=0.01, data=sample[0])
                 model.visualization(sample=original_sample, tag='original')
                 model.visualization(sample=generate_sample, tag='KDE_generate')
         else:
