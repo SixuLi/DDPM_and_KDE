@@ -47,7 +47,7 @@ def create_image_collage(images, collage_dim=(8, 3), image_size=(100, 100)):
 
 # Load the images into a list
 image_files = ['./results/KDE_generation_cifar10/kde_sampling_original_cifar10_{}.png'.format(i) for i in range(0, 8)] + ['./results/KDE_generation_cifar10/kde_sampling_sample_cifar10_{}.png'.format(i) for i in range(0, 8)] + \
-                ['./results/fid-tmp-optim-early-stop-2/000000/00002{}.png'.format(i) for i in range(0, 8)] # Adjust the range and file names as necessary
+                ['./results/fid-tmp-optim-early-stop-3/000000/00002{}.png'.format(i) for i in range(0, 8)] # Adjust the range and file names as necessary
 images = [Image.open(image_file) for image_file in image_files]
 
 # Generate the collage
