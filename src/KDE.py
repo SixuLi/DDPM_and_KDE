@@ -88,7 +88,7 @@ class KernelDensityEstimator:
 
     def visualization(self, sample, tag):
         sample = self.inverse_transform(sample)
-        sample = (sample * 127.5 + 128).clip(0,255).astype('uint8')
+        sample = sample.clip(0,255).astype('uint8')
         if tag == 'original':
             figsave_path = os.path.join(self.train_init.output_path, 'kde_sampling_original_cifar10_' + '{}.png'.format(self.args.seed))
         elif tag == 'KDE_generate':
