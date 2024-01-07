@@ -57,7 +57,7 @@ images = [Image.open(image_file) for image_file in image_files]
 collage = create_image_collage(images)
 
 # Save the collage
-output_path = './results/collected_visualizations.png'
+output_path = './results/collected_visualizations_different_time_step.png'
 collage.save(output_path)
 
 # Display the collage
