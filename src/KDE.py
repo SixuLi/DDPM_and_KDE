@@ -1,9 +1,6 @@
-import matplotlib.pyplot as plt
 import numpy as np
 import os
 from torchvision import datasets
-from sklearn.decomposition import PCA
-from sklearn.preprocessing import MinMaxScaler
 from PIL import Image
 
 
@@ -22,16 +19,6 @@ class KernelDensityEstimator:
 
             # Flatten
             data = data.reshape(data.shape[0], -1)
-
-            # PCA transformation
-            # self.pca_obj = PCA(n_components=data.shape[1])
-            # self.pca_obj.fit(data)
-            # data = self.pca_obj.transform(data)
-            #
-            # # Scale transformation
-            # self.scaler_obj = MinMaxScaler()
-            # self.scaler_obj.fit(data)
-            # data = self.scaler_obj.transform(data)
 
             self.train_data = data
 
@@ -99,7 +86,5 @@ class KernelDensityEstimator:
         data = np.array(Image.open(image_name))
         data = np.expand_dims(data, 0)
         data = data.reshape(data.shape[0], -1)
-        # data = self.pca_obj.transform(data)
-        # data = self.scaler_obj.transform(data)
 
         return data

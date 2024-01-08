@@ -142,10 +142,23 @@ class Generative_model:
         plt.show()
 
     def visualization_score_approximation_error(self, num_training_data_list, err_list):
+        reference_1_start_point = (5.5, 0.85)
+        reference_1_end_point = (7.0, -0.65)
+        reference_line_1_x = [reference_1_start_point[0], reference_1_end_point[0]]
+        reference_line_1_y = [reference_1_start_point[1], reference_1_end_point[1]]
+
+        reference_2_start_point = (5.5, -0.25)
+        reference_2_end_point = (7.0, -1.75)
+        reference_line_2_x = [reference_2_start_point[0], reference_2_end_point[0]]
+        reference_line_2_y = [reference_2_start_point[1], reference_2_end_point[1]]
+
         plt.figure(figsize=(12,8))
-        plt.plot(num_training_data_list, err_list)
-        plt.xlabel(r'Number of sample size $N$')
-        plt.ylabel(r'$\mathbb{E}_{\{y_i\} \sim p_{*}^{\otimes N}} \left|E_{\{y_i\}} \right|^2$')
+        plt.plot(np.log(num_training_data_list), np.log(err_list), marker='X', mec='darkorange', mfc='darkorange')
+        plt.plot(reference_line_1_x, reference_line_1_y, linestyle='dashed', c='darkgreen')
+        plt.plot(reference_line_2_x, reference_line_2_y, linestyle='dashed', c='darkgreen')
+        # plt.axline((np.log(num_training_data_list)[0], np.log(err_list)[0]), slope=-1)
+        plt.xlabel(r'$\log$ (Number of sample size $N$)')
+        plt.ylabel(r'$\log (\mathbb{E}_{\{y_i\} \sim p_{*}^{\otimes N}} \left|E_{\{y_i\}} \right|^2)$')
         figsave_path = os.path.join(self.train_init.output_path, 'score_approximation_error.png')
         plt.savefig(figsave_path, bbox_inches='tight')
         plt.show()
