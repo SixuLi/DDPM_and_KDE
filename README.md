@@ -31,6 +31,7 @@ We run the experiments using CIFAR10 dataset.
 Run the corresponding bash command.
 
 #### Generate samples from DDPM with empirical optimal score function:
+We follow the code [DiffMemorize](https://github.com/sail-sg/DiffMemorize) provided in paper [On Memorization in Diffusion Models](https://arxiv.org/abs/2310.02664).
 * Step 1:
   Prepare the environments by running the following commands to install python libraries:
   
