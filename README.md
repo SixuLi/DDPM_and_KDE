@@ -32,7 +32,7 @@ Run the corresponding bash command.
 
 #### Generate samples from DDPM with empirical optimal score function:
 * Step 1:
-  Prepare the enviroments by running the following commands to install python libraries:
+  Prepare the environments by running the following commands to install python libraries:
   
   ```
   pip install -r DiffMemorize/requirements.txt
@@ -52,7 +52,7 @@ Run the corresponding bash command.
   ```
   python DiffMemorize/dataset_tool.py --source=datasets/cifar10/cifar-10-python.tar.gz --dest=datasets/cifar10/cifar10-train.zip
   ```
-* Step 4:  Run the corrpendoing bash command in `bin/run_simulations.sh`.
+* Step 4:  Run the corresponding bash command in `bin/run_simulations.sh`.
   
 
 
