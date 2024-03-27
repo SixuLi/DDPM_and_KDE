@@ -33,12 +33,13 @@ SRC='src'
 ##### Real-world data distribution: CIFAR10 dataset #####
 
 #### Generate samples from Gaussian KDE ####
-#for seed in 1
-#do
-#  python "${SRC}"/main.py \
-#      --experiment_name "KDE_generation_cifar10" \
-#      --seed "$seed"
-#done
+for seed in 1
+do
+  python "${SRC}"/main.py \
+      --experiment_name "KDE_generation_cifar10" \
+      --scaling_factor 0.1 \
+      --seed "$seed"
+done
 
 
 #### Generate samples from DDPM with empirical optimal score function ####
@@ -50,18 +51,18 @@ SRC='src'
 #    --network=datasets/cifar10/cifar10-train.zip
 
 ##### Estimate Total Correlation for Gaussian KDE #####
-for gamma in 0.001 0.005 0.01 0.05 0.1 0.5 1.0 5.0 10.0 50.0
-do
-  python "${SRC}"/main.py \
-    --experiment_name "estimate_total_correlation" \
-    --N 100 \
-    --d 20 \
-    --M 10 \
-    --K 200 \
-    --gamma $gamma \
-    --cov 1 \
-    --seed 1
-done
+#for gamma in 0.001 0.005 0.01 0.05 0.1 0.5 1.0 5.0 10.0 50.0
+#do
+#  python "${SRC}"/main.py \
+#    --experiment_name "estimate_total_correlation" \
+#    --N 100 \
+#    --d 20 \
+#    --M 10 \
+#    --K 200 \
+#    --gamma $gamma \
+#    --cov 1 \
+#    --seed 1
+#done
 
 
 
