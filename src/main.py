@@ -38,8 +38,8 @@ if __name__ == '__main__':
 
     logging.basicConfig(level=logging.INFO)
     logging.info(args.experiment_name)
-    # logging.info("Seed {}".format(args.seed))
-    logging.info("gamma {}".format(args.gamma))
+    logging.info("Seed {}".format(args.seed))
+    # logging.info("gamma {}".format(args.gamma))
 
     train_init = init.Init(args=args)
 
