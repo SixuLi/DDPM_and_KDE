@@ -16,7 +16,13 @@ class Init:
     def __init__(self, args):
         np.random.seed(args.seed)
         self.result_path = args.result_path
-        self.output_path = os.path.join(args.result_path, args.experiment_name)
+        if args.experiment_name == 'KDE_generation_cifar10':
+            self.output_path = os.path(args.result_path, args.experiment_name + '_scaling_factor_{}'.format(args.scaling_factor))
+        elif args.experiment_name == 'estimate_total_correlation':
+            self.output_path = os.path(args.result_path,
+                                       args.experiment_name + '_d_{}'.format(args.d))
+        else:
+            self.output_path = os.path.join(args.result_path, args.experiment_name)
 
         if args.seed == 0:
             make_dirs(self.result_path)
