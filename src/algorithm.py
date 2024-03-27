@@ -154,8 +154,8 @@ class Generative_model:
 
         plt.figure(figsize=(12,8))
         plt.plot(np.log(num_training_data_list), np.log(err_list), marker='X', mec='darkorange', mfc='darkorange')
-        plt.plot(reference_line_1_x, reference_line_1_y, linestyle='dashed', c='darkgreen')
-        plt.plot(reference_line_2_x, reference_line_2_y, linestyle='dashed', c='darkgreen')
+        plt.plot(reference_line_1_x, reference_line_1_y, linestyle='dashed', c='green')
+        plt.plot(reference_line_2_x, reference_line_2_y, linestyle='dashed', c='green')
         # plt.axline((np.log(num_training_data_list)[0], np.log(err_list)[0]), slope=-1)
         plt.xlabel(r'$\log$ (Number of sample size $N$)')
         plt.ylabel(r'$\log (\mathbb{E}_{\{y_i\} \sim p_{*}^{\otimes N}} \left|E_{\{y_i\}} \right|^2)$')

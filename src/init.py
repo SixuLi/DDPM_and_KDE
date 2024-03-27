@@ -16,7 +16,7 @@ class Init:
     def __init__(self, args):
         np.random.seed(args.seed)
         self.result_path = args.result_path
-        self.output_path = os.path.join(args.result_path, args.experiment_name)
+        self.output_path = os.path.join(args.result_path, args.experiment_name + '_d_{}'.format(args.d))
 
         if args.seed == 0:
             make_dirs(self.result_path)
