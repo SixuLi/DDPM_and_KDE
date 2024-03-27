@@ -37,7 +37,7 @@ for seed in {0..8}
 do
   python "${SRC}"/main.py \
       --experiment_name "KDE_generation_cifar10" \
-      --scaling_factor 2.0 \
+      --scaling_factor 5.0 \
       --seed "$seed"
 done
 
