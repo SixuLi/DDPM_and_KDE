@@ -17,10 +17,11 @@ class Init:
         np.random.seed(args.seed)
         self.result_path = args.result_path
         if args.experiment_name == 'KDE_generation_cifar10':
-            self.output_path = os.path(args.result_path, args.experiment_name + '_scaling_factor_{}'.format(args.scaling_factor))
+            self.output_path = os.path.join(args.result_path,
+                                            args.experiment_name + '_scaling_factor_{}'.format(args.scaling_factor))
         elif args.experiment_name == 'estimate_total_correlation':
-            self.output_path = os.path(args.result_path,
-                                       args.experiment_name + '_d_{}'.format(args.d))
+            self.output_path = os.path.join(args.result_path,
+                                            args.experiment_name + '_d_{}'.format(args.d))
         else:
             self.output_path = os.path.join(args.result_path, args.experiment_name)
 
