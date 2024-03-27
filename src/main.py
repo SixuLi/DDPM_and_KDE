@@ -67,16 +67,12 @@ if __name__ == '__main__':
 
         if model.args.experiment_name == 'Estimation_score_approximation_error':
             num_training_data_list = np.array(range(100,2001,100))
-            # score_approximation_error_list = np.zeros_like(num_training_data_list, dtype=float)
-            # for i, num_training_data in enumerate(num_training_data_list):
-            #     print('Number of samples = {}'.format(num_training_data))
-            #     score_approximation_error_list[i] = model.score_approximation_error(num_x=1000, num_y=num_training_data,
-            #                                                                                 rand_sample_time=10)
-            # print(score_approximation_error_list)
-            score_approximation_error_list = np.array([3.03330265, 1.57131465, 1.07974174, 0.82257152, 0.65978504, 0.57862584,
-                                                       0.50609356, 0.4406535,  0.39416571, 0.36625418, 0.34241554, 0.31937641,
-                                                       0.30400835, 0.28355453, 0.27308075, 0.23998752, 0.2215496,  0.20494394,
-                                                       0.19673546, 0.18940907])
+            score_approximation_error_list = np.zeros_like(num_training_data_list, dtype=float)
+            for i, num_training_data in enumerate(num_training_data_list):
+                print('Number of samples = {}'.format(num_training_data))
+                score_approximation_error_list[i] = model.score_approximation_error(num_x=1000, num_y=num_training_data,
+                                                                                            rand_sample_time=10)
+            print(score_approximation_error_list)
             model.visualization_score_approximation_error(num_training_data_list,score_approximation_error_list)
 
         elif model.args.experiment_name == 'DDPM_generation_2d_gaussian':
